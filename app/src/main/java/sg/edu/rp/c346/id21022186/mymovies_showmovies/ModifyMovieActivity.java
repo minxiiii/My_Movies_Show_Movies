@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,10 +36,30 @@ public class ModifyMovieActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         details = (Movies) i.getSerializableExtra("details");
-        ID.setText(details.getId());
+
+        //ID.setText(details.getId());
         tvTitle.setText(details.getTitle());
         tvGenre.setText(details.getGenre());
-        tvYear.setText(details.getYear());
+        tvYear.setText(details.getYear()+"");
+        spinner.setSelection(2);
+
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                switch(i) {
+//                    case 0:
+//                        spinner.get
+//                        break;
+//                    case 1:
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
 
         //spinner.setOnItemSelectedListener(details.getRating());
 

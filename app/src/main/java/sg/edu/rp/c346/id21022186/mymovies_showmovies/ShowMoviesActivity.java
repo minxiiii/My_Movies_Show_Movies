@@ -49,7 +49,7 @@ public class ShowMoviesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int
                     position, long identity) {
-                Movies details= al.get(position);
+                Movies details = al.get(position);
                 Intent i = new Intent(ShowMoviesActivity.this,
                         ModifyMovieActivity.class);
                 i.putExtra("details", details);

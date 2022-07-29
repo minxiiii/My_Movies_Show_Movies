@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.i("info", "created tables");
 
         //Dummy records, to be inserted when the database is created
-        for (int i = 0; i< 4; i++) {
+        for (int i = 0; i < 4; i++) {
             ContentValues values = new ContentValues();
             values.put(COLUMN_TITLE, "Data number " + i);
             values.put(COLUMN_GENRE, "Genre " + i);
@@ -48,6 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.i("info", "dummy records inserted");
 
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOVIES);
@@ -63,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_RATING, rating);
         long result = db.insert(TABLE_MOVIES, null, values);
         db.close();
-        Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1
+        Log.d("SQL Insert", "ID:" + result); //id returned, shouldn’t be -1
         return result;
     }
 
@@ -72,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE,COLUMN_YEAR, COLUMN_RATING};
+        String[] columns = {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE, COLUMN_YEAR, COLUMN_RATING};
         Cursor cursor = db.query(TABLE_MOVIES, columns, null, null,
                 null, null, null, null);
 
@@ -91,4 +92,15 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return movies;
     }
-}
+
+   // public int updateMovie(Movies details) {
+       // SQLiteDatabase db = this.getWritableDatabase();
+       // ContentValues values = new ContentValues();
+       // values.put(COLUMN_TITLE, details.getTitle());
+       // values.put(COLUMN_GENRE, details.getGenre());
+        //values.put(COLUMN_YEAR, details.getYear());
+       // values.put(COLUMN_RATING, details.getRating());
+
+    }
+
+

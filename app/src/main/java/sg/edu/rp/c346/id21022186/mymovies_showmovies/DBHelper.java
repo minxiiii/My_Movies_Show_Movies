@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Movie;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -114,6 +115,32 @@ public class DBHelper extends SQLiteOpenHelper {
         int result = db.delete(TABLE_MOVIES, condition, args);
         db.close();
         return result;
+    }
+
+    public ArrayList<Movies> getPG13(String keyword) {
+        ArrayList<Movies> movies = new ArrayList<Movies>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns= {COLUMN_ID, COLUMN_TITLE, COLUMN_GENRE, COLUMN_YEAR, COLUMN_RATING};
+        String condition = COLUMN_RATING + " Like ?";
+        String[] args = { "%" +  keyword + "%"};
+        Cursor cursor = db.query(TABLE_MOVIES, columns, condition, args,
+                null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String genre = cursor.getString(2);
+                int year = cursor.getInt(3);
+                String rating = cursor.getString(4);
+                Movies movie = new Movies(id, title, genre, year, rating);
+                movies.add(movie);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return movies;
     }
 }
 

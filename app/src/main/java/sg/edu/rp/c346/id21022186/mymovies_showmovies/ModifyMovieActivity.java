@@ -13,8 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ModifyMovieActivity extends AppCompatActivity {
-    TextView ID;
-    EditText tvTitle, tvGenre, tvYear;
+
+    EditText tvTitle, tvGenre, tvYear, ID;
     Spinner spinner;
     Button btnUpdate, btnDel, btnCancel;
     Movies details;
@@ -27,7 +27,7 @@ public class ModifyMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_movie);
 
-        ID = findViewById(R.id.ID);
+        ID = findViewById(R.id.tvId);
 
         tvTitle = findViewById(R.id.tvTitle);
         tvGenre = findViewById(R.id.tvGenre);
@@ -40,64 +40,25 @@ public class ModifyMovieActivity extends AppCompatActivity {
         Intent i = getIntent();
         details = (Movies) i.getSerializableExtra("details");
 
-        //ID.setText(details.getId());
+        ID.setText(details.getId()+"");
         tvTitle.setText(details.getTitle());
         tvGenre.setText(details.getGenre());
         tvYear.setText(details.getYear()+"");
 
-
-        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                *//*if(details.getRating() == "G") {
-                    rate = 0;
-                }else if(details.getRating() == "PG"){
-                    rate = 1;
-                }else if(details.getRating() == "PG13"){
-                    rate = 2;
-                }else if(details.getRating() == "NC16"){
-                    rate = 3;
-                }else if(details.getRating() == "M18"){
-                    rate = 4;
-                }else if(details.getRating() == "R21"){
-                    rate = 5;
-                }*//*
-                value = adapterView.getItemAtPosition(i);
-                switch (i){
-                    case 0:
-                        rate = 0;
-                        break;
-
-                    case 1:
-                        rate = 1;
-                        break;
-
-                    case 2:
-                        rate = 2;
-                        break;
-
-                    case 3:
-                        rate = 3;
-                        break;
-
-                    case 4:
-                        rate = 4;
-                        break;
-
-                    case 5:
-                        rate = 5;
-                        break;
-                }
-                spinner.setSelection(rate);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
-
-        //spinner.setOnItemSelectedListener(details.getRating());
+        if(details.getRating().equals("G")) {
+            rate = 0;
+        }else if(details.getRating().equals("PG")){
+            rate = 1;
+        }else if(details.getRating().equals("PG13")){
+            rate = 2;
+        }else if(details.getRating().equals("NC16")){
+            rate = 3;
+        }else if(details.getRating().equals("M18")){
+            rate = 4;
+        }else if(details.getRating().equals("R21")){
+            rate = 5;
+        }
+        spinner.setSelection(rate);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override

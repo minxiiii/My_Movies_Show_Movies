@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
@@ -17,6 +18,7 @@ public class ShowMoviesActivity extends AppCompatActivity {
 
     ArrayList<Movies> al;
     ArrayAdapter<Movies> aa;
+    CustomAdapter caMovies;
     ListView lv;
     ToggleButton tbAge;
 
@@ -27,7 +29,7 @@ public class ShowMoviesActivity extends AppCompatActivity {
         al.clear();
         al.addAll(dbh.getAllMovies());
 
-        aa.notifyDataSetChanged();
+        caMovies.notifyDataSetChanged();
 
 
     }
@@ -39,11 +41,15 @@ public class ShowMoviesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_movies);
 
         lv = findViewById(R.id.lv);
+        tbAge = findViewById(R.id.tbAge);
 
         al = new ArrayList<Movies>();
-        aa = new ArrayAdapter<Movies>(this,
+        /*aa = new ArrayAdapter<Movies>(this,
                 android.R.layout.simple_list_item_1, al);
-        lv.setAdapter(aa);
+        lv.setAdapter(aa);*/
+
+        caMovies = new CustomAdapter(this, R.layout.row, al);
+        lv.setAdapter(caMovies);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,7 +63,26 @@ public class ShowMoviesActivity extends AppCompatActivity {
             }
         });
 
+        tbAge.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                String filterText = "PG13";
+
+                DBHelper dbh = new DBHelper(ShowMoviesActivity.this);
+
+                al.clear();
+                if(checked){
+                    al.addAll(dbh.getPG13(filterText));
+                }else{
+                    al.addAll(dbh.getAllMovies());
+                }
+
+                caMovies.notifyDataSetChanged();
+            }
+        });
 
     }
+
+
 
 }

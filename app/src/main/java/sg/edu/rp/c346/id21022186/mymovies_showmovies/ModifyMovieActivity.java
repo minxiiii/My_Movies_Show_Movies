@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ public class ModifyMovieActivity extends AppCompatActivity {
     Spinner spinner;
     Button btnUpdate, btnDel, btnCancel;
     Movies details;
+    Object value;
+    int rate = 0;
 
 
     @Override
@@ -41,25 +44,58 @@ public class ModifyMovieActivity extends AppCompatActivity {
         tvTitle.setText(details.getTitle());
         tvGenre.setText(details.getGenre());
         tvYear.setText(details.getYear()+"");
-        spinner.setSelection(2);
 
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                switch(i) {
-//                    case 0:
-//                        spinner.get
-//                        break;
-//                    case 1:
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+
+        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                *//*if(details.getRating() == "G") {
+                    rate = 0;
+                }else if(details.getRating() == "PG"){
+                    rate = 1;
+                }else if(details.getRating() == "PG13"){
+                    rate = 2;
+                }else if(details.getRating() == "NC16"){
+                    rate = 3;
+                }else if(details.getRating() == "M18"){
+                    rate = 4;
+                }else if(details.getRating() == "R21"){
+                    rate = 5;
+                }*//*
+                value = adapterView.getItemAtPosition(i);
+                switch (i){
+                    case 0:
+                        rate = 0;
+                        break;
+
+                    case 1:
+                        rate = 1;
+                        break;
+
+                    case 2:
+                        rate = 2;
+                        break;
+
+                    case 3:
+                        rate = 3;
+                        break;
+
+                    case 4:
+                        rate = 4;
+                        break;
+
+                    case 5:
+                        rate = 5;
+                        break;
+                }
+                spinner.setSelection(rate);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });*/
 
         //spinner.setOnItemSelectedListener(details.getRating());
 
@@ -73,6 +109,9 @@ public class ModifyMovieActivity extends AppCompatActivity {
 
                dbh.updateMovie(details);
                 dbh.close();
+                Intent i = new Intent(ModifyMovieActivity.this,
+                        ShowMoviesActivity.class);
+                startActivity(i);
             }
         });
 
@@ -81,6 +120,18 @@ public class ModifyMovieActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DBHelper dbh = new DBHelper(ModifyMovieActivity.this);
               dbh.deleteMovie(details.getId());
+                Intent i = new Intent(ModifyMovieActivity.this,
+                        ShowMoviesActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ModifyMovieActivity.this,
+                        ShowMoviesActivity.class);
+                startActivity(i);
 
             }
         });
@@ -88,10 +139,4 @@ public class ModifyMovieActivity extends AppCompatActivity {
 
     }
 
-    protected void onResume() {
-        super.onResume();
-
-        btnCancel.performClick();
-
-    }
 }

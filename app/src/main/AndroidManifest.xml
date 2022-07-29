@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMoviesShowMovies">
         <activity
-            android:name=".ModifyMovie"
+            android:name=".ModifyMovieActivity"
             android:exported="false" />
         <activity
-            android:name=".ShowMovies"
+            android:name=".ShowMoviesActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

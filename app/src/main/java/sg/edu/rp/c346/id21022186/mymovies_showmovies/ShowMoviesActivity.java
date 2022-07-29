@@ -22,11 +22,11 @@ public class ShowMoviesActivity extends AppCompatActivity {
         super.onResume();
         DBHelper dbh = new DBHelper(ShowMoviesActivity.this);
         al.clear();
-        al.addAll(dbh.getAllSongs());
+        al.addAll(dbh.getAllMovies());
 
         aa.notifyDataSetChanged();
 
-        year = findViewById(R.id.yearFilter);
+        int year = findViewById(R.id.yearFilter);
 
         ArrayAdapter aaYear = new ArrayAdapter(this,android.R.layout.simple_spinner_item,dbh.getAllYears());
         aaYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

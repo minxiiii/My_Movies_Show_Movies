@@ -1,13 +1,14 @@
 package sg.edu.rp.c346.id21022186.mymovies_showmovies;
 
 public class Movies {
-    //private int id;
+    private int _id;
     private String title;
     private String genre;
     private int year;
     private String rating;
 
-    public Movies(String title, String genre, int year, String rating) {
+    public Movies(int id,String title, String genre, int year, String rating) {
+        this._id = id;
         this.title = title;
         this.genre = genre;
         this.year = year;
@@ -43,5 +44,12 @@ public class Movies {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+    @Override
+    public String toString() {
+        String starsEmo = "";
+        String display = "";
+        display = title + "\n" + genre + " - " + year + "\n" + starsEmo;
+        return display;
     }
 }

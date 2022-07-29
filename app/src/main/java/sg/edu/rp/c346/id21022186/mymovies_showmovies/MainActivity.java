@@ -3,17 +3,22 @@ package sg.edu.rp.c346.id21022186.mymovies_showmovies;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText tvTitle, tvGenre, tvYear;
     Spinner spinner;
     Button btnInsert, btnShow;
+    ArrayList<Movies> al;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
                 DBHelper dbh = new DBHelper(MainActivity.this);
                 long inserted_id = dbh.insertMovies(title,genre,year,item);
 
+                if (inserted_id != -1) {
+                    al.clear();
+                    al.addAll(dbh.getAllMovies());
+
+                    Toast.makeText(MainActivity.this, "Insert successful",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

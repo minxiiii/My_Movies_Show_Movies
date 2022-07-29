@@ -26,12 +26,7 @@ public class ShowMoviesActivity extends AppCompatActivity {
 
         aa.notifyDataSetChanged();
 
-        int year = findViewById(R.id.yearFilter);
 
-        ArrayAdapter aaYear = new ArrayAdapter(this,android.R.layout.simple_spinner_item,dbh.getAllYears());
-        aaYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        year.setAdapter(aaYear);
-        aaYear.notifyDataSetChanged();
     }
 
 
@@ -39,5 +34,12 @@ public class ShowMoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_movies);
+
+        lv = findViewById(R.id.lv);
+
+        al = new ArrayList<Movies>();
+        aa = new ArrayAdapter<Movies>(this,
+                android.R.layout.simple_list_item_1, al);
+        lv.setAdapter(aa);
     }
 }

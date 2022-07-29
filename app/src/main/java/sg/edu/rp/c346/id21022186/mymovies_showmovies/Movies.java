@@ -50,6 +50,8 @@ public class Movies {
     public void setRating(String rating) {
         this.rating = rating;
     }
+
+
     public String toString() {
         String starsEmo = "";
         String display = "";

@@ -39,14 +39,18 @@ public class ModifyMovieActivity extends AppCompatActivity {
         tvTitle.setText(details.getTitle());
         tvGenre.setText(details.getGenre());
         tvYear.setText(details.getYear());
+
         //spinner.setOnItemSelectedListener(details.getRating());
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(ModifyMovieActivity.this);
-                // data.setNoteContent(etContent.getText().toString());
-               // dbh.updateMovie(details);
+                details.setTitle(tvTitle.getText().toString());
+                details.setGenre(tvGenre.getText().toString());
+                details.setYear(Integer.parseInt(tvYear.getText().toString()));
+
+               dbh.updateMovie(details);
                 dbh.close();
             }
         });
@@ -55,7 +59,7 @@ public class ModifyMovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DBHelper dbh = new DBHelper(ModifyMovieActivity.this);
-               // dbh.deleteMovie(details.getId());
+              dbh.deleteMovie(details.getId());
 
             }
         });

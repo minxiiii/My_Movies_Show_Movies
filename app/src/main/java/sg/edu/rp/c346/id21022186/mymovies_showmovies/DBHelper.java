@@ -93,14 +93,29 @@ public class DBHelper extends SQLiteOpenHelper {
         return movies;
     }
 
-   // public int updateMovie(Movies details) {
-       // SQLiteDatabase db = this.getWritableDatabase();
-       // ContentValues values = new ContentValues();
-       // values.put(COLUMN_TITLE, details.getTitle());
-       // values.put(COLUMN_GENRE, details.getGenre());
-        //values.put(COLUMN_YEAR, details.getYear());
-       // values.put(COLUMN_RATING, details.getRating());
-
+    public int updateMovie(Movies details) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TITLE, details.getTitle());
+        values.put(COLUMN_GENRE, details.getGenre());
+        values.put(COLUMN_YEAR, details.getYear());
+        values.put(COLUMN_RATING, details.getRating());
+        String condition = COLUMN_ID + "= ?";
+        String[] args = {String.valueOf(details.getId())};
+        int result = db.update(TABLE_MOVIES, values, condition, args);
+        db.close();
+        return result;
     }
+
+    public int deleteMovie(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String condition = COLUMN_ID + "= ?";
+        String[] args = {String.valueOf(id)};
+        int result = db.delete(TABLE_MOVIES, condition, args);
+        db.close();
+        return result;
+    }
+}
+
 
 

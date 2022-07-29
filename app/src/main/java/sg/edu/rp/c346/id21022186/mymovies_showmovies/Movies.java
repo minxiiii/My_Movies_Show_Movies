@@ -5,9 +5,9 @@ public class Movies {
     private String title;
     private String genre;
     private int year;
-    private char rating;
+    private String rating;
 
-    public Movies(String title, String genre, int year, char rating) {
+    public Movies(String title, String genre, int year, String rating) {
         this.title = title;
         this.genre = genre;
         this.year = year;
@@ -37,11 +37,11 @@ public class Movies {
         this.year = year;
     }
 
-    public char getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(char rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 }

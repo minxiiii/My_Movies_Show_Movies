@@ -86,7 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="2dp"
-            android:text="UPDATE"/>
+            android:text="UPDATE"
+            android:backgroundTint="@color/green"/>
 
         <Button
             android:id="@+id/btnDel"
@@ -94,14 +95,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="2dp"
-            android:text="DELETE"/>
+            android:text="DELETE"
+            android:backgroundTint="@color/green"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CANCEL"/>
+        android:text="CANCEL"
+        android:backgroundTint="@color/green"/>
 
 
 </LinearLayout>

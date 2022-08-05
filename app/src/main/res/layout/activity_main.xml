@@ -6,42 +6,61 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:layout_margin="20dp">
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="650px"
+        app:srcCompat="@drawable/ticket"
+        android:layout_marginBottom="80px"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Movie Title" />
+        android:text="Movie Title"
+        android:textColor="@color/teal_200"/>
     <EditText
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/teal_700"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genre" />
+        android:text="Genre"
+        android:textColor="@color/teal_200"/>
     <EditText
         android:id="@+id/tvGenre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/teal_700"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Year" />
+        android:text="Year"
+        android:textColor="@color/teal_200"/>
     <EditText
         android:id="@+id/tvYear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/teal_700"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rating" />
+        android:text="Rating"
+        android:textColor="@color/teal_200"/>
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/spinnerItems" />
+        android:entries="@array/spinnerItems"
+        android:outlineAmbientShadowColor="@color/teal_200"
+        android:outlineSpotShadowColor="@color/teal_200"
+        android:textColor="@color/teal_200"
+        android:layout_marginTop="50px"
+        android:paddingVertical="20px"/>
 
     <LinearLayout
         android:layout_width="match_parent"

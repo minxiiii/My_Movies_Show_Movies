@@ -67,8 +67,10 @@ public class ModifyMovieActivity extends AppCompatActivity {
                 details.setTitle(tvTitle.getText().toString());
                 details.setGenre(tvGenre.getText().toString());
                 details.setYear(Integer.parseInt(tvYear.getText().toString()));
+                String item = spinner.getSelectedItem().toString();
+                details.setRating(item);
 
-               dbh.updateMovie(details);
+                dbh.updateMovie(details);
                 dbh.close();
                 Intent i = new Intent(ModifyMovieActivity.this,
                         ShowMoviesActivity.class);

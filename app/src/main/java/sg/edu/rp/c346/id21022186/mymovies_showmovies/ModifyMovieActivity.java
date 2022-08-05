@@ -1,9 +1,13 @@
 package sg.edu.rp.c346.id21022186.mymovies_showmovies;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -81,6 +85,33 @@ public class ModifyMovieActivity extends AppCompatActivity {
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LayoutInflater inflater =
+                        (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View viewDialog = inflater.inflate(R.layout.danger, null);
+
+                AlertDialog.Builder myBuilder = new AlertDialog.Builder(ModifyMovieActivity.this);
+
+                myBuilder.setTitle("Danger");
+                myBuilder.setView(viewDialog);
+                myBuilder.setMessage("Are you sure you want to delete the movie?");
+                myBuilder.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Intent i = new Intent(ModifyMovieActivity.this,
+                                ShowMoviesActivity.class);
+                        startActivity(i);
+                    }
+                });
+                myBuilder.setNegativeButton("CANCEL", null);
+                AlertDialog myDialog = myBuilder.create();
+                myDialog.show();
+
+            }
+        });
+/*
+        btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 DBHelper dbh = new DBHelper(ModifyMovieActivity.this);
               dbh.deleteMovie(details.getId());
                 Intent i = new Intent(ModifyMovieActivity.this,
@@ -89,12 +120,42 @@ public class ModifyMovieActivity extends AppCompatActivity {
             }
         });
 
+ */
+/*
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ModifyMovieActivity.this,
                         ShowMoviesActivity.class);
                 startActivity(i);
+            }
+        });
+
+ */
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater =
+                        (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View viewDialog = inflater.inflate(R.layout.danger, null);
+
+                AlertDialog.Builder myBuilder = new AlertDialog.Builder(ModifyMovieActivity.this);
+
+                myBuilder.setTitle("Danger");
+                myBuilder.setView(viewDialog);
+                myBuilder.setMessage("Are you sure you want discard the changes?");
+                myBuilder.setPositiveButton("DISCARD", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        Intent i = new Intent(ModifyMovieActivity.this,
+                                ShowMoviesActivity.class);
+                        startActivity(i);
+                    }
+                });
+                myBuilder.setNegativeButton("DO NOT DISCARD", null);
+                AlertDialog myDialog = myBuilder.create();
+                myDialog.show();
 
             }
         });
